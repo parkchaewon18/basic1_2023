@@ -2,6 +2,7 @@ package com.ll.basic1;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 // @Controller 의 의미
@@ -42,5 +43,13 @@ public class HomeController {
     public int showincrease() { // 리턴되는 int 값은 String 화 되어서 고객(브라우저)에게 전달된다.
         count++;
         return count;
+    }
+
+    @GetMapping("/home/plus")
+    @ResponseBody
+    //int a 는 쿼리스트링에서 a 파라미터의 값을 얻은 후 정수화 한 값이어야 한다.
+    //@RequestParam 는 생략가능
+    public int showPlus(@RequestParam(defaultValue = "0") int a, @RequestParam int b) {
+        return a + b;
     }
 }
